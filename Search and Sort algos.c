@@ -56,16 +56,47 @@ void treeSort(){};
 
 void linearSearch(){};
 void binarySearch(){};
-void jumpSearch(){};
+
+int jumpSearch(int arr[], int size, int searchFor){
+    double step = sqrt(size);
+    int start, i =0;
+    for (i ; i < size ; i+=step) {
+        if(arr[i] == searchFor){
+            return i;
+        }else if(arr[i] < searchFor){
+            start = i;
+        }else if(arr[i] > searchFor){
+            break;
+        }
+    }
+    int j = start;
+    printf("\nThis is index of j: %d", j);
+    for (j ; j < (start + step) ; j++) { //remplace size with start + step
+            if(arr[j] == searchFor){
+                printf("\nNumber found,%d, its index is %d\n", arr[j], j);
+                return j;
+            }
+    }
+    //in case number is not found
+    printf("\nNumber not found");
+    return -1;
+
+};
 
 void main(){
     int arr[] = {78,97,6,0,543,1,0,1,76};
     int size = sizeof(arr)/sizeof(arr[0]);
+    int searchFor = 543;
     printf("Size of array %d\n", size);
     displayArr(arr, size);
-    //selectionSort(arr,size);
-    bubbleSort(arr, size);
+    selectionSort(arr,size);
+    //bubbleSort(arr, size);
     printf("\nSorted ");
     displayArr(arr, size);
+
+
+    //Search algs
+
+    printf("\nJump Search, index of number we look for : %d", jumpSearch(arr,size, searchFor));
 
 }
