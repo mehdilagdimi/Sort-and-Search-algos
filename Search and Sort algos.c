@@ -3,7 +3,7 @@
 
 //sorting algorithms
 void displayArr(int arr[], int size){
-    printf("\nSorted array :");
+    printf("\nArray :");
     for(int i = 0; i < size; i++){
         printf("\n- %d", arr[i]);
     }
@@ -31,8 +31,24 @@ void selectionSort(int arr[], int sizeArr){
         swap(&arr[min_idx], &arr[i]);
     }
 };
-void bubbleSort(){
+void bubbleSort(int arr[], int size){
 
+    for(int i = 0; i < size - 1; ++i)
+   {
+      int swapped = 0;
+
+      for(int j = 0; j < (size - i - 1); ++j)
+         if(arr[j] > arr[j+1])
+         {
+            int temp = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = temp;
+
+            swapped = 1;
+         }
+      if(!swapped)
+         break;
+   }
 };
 void treeSort(){};
 
@@ -46,7 +62,10 @@ void main(){
     int arr[] = {78,97,6,0,543,1,0,1,76};
     int size = sizeof(arr)/sizeof(arr[0]);
     printf("Size of array %d\n", size);
-    selectionSort(arr,size);
+    displayArr(arr, size);
+    //selectionSort(arr,size);
+    bubbleSort(arr, size);
+    printf("\nSorted ");
     displayArr(arr, size);
 
 }
