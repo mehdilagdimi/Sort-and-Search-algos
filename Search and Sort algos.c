@@ -55,7 +55,31 @@ void treeSort(){};
 //Search algorithms
 
 void linearSearch(){};
-void binarySearch(){};
+void binarySearch(int arr[], int size, int searchFor, int* index){
+     int arrMin = 0, arrMax = (size - 1);
+     int middle;
+
+     if(searchFor > arr[arrMax] || searchFor < arr[arrMin]) {printf("\nNumber does not exist in data");}
+     else{
+        while(arrMin <= arrMax){
+            middle = (arrMin + arrMax)/2; //printf("\nThe index of the middle of array in this iteration is : %d", middle);
+            if(searchFor > arr[middle])
+            {
+                arrMin = middle + 1;
+            }
+            else if(searchFor < arr[middle])
+            {
+                arrMax = middle - 1;
+            }
+            else
+            {
+                printf("\nThe element %d exists and its index is : %d", searchFor , middle);
+                *index = middle;
+                break;
+            }
+        }
+     }
+};
 
 int jumpSearch(int arr[], int size, int searchFor){
     double step = sqrt(size);
@@ -87,6 +111,7 @@ void main(){
     int arr[] = {78,97,6,0,543,1,0,1,76};
     int size = sizeof(arr)/sizeof(arr[0]);
     int searchFor = 543;
+    int index;
     printf("Size of array %d\n", size);
     displayArr(arr, size);
     selectionSort(arr,size);
@@ -97,6 +122,8 @@ void main(){
 
     //Search algs
 
-    printf("\nJump Search, index of number we look for : %d", jumpSearch(arr,size, searchFor));
+    //printf("\nJump Search, index of number we look for : %d", jumpSearch(arr,size, searchFor));
+    binarySearch(arr,size, searchFor, &index);
+    printf("\nBinary search, index of number we look for : %d", index);
 
 }
