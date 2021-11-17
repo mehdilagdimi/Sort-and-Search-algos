@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdbool.h>
+
 
 //sorting algorithms
 void displayArr(int arr[], int size){
@@ -54,7 +56,23 @@ void treeSort(){};
 
 //Search algorithms
 
-void linearSearch(){};
+void linearSearch(int arr[], int size, int searchFor){
+    bool b = false;
+    int i = 0;
+    for(i ;i < size; i++)
+    {
+        if(arr[i] == searchFor)
+        {
+            b = true;
+            break;
+        }
+    }
+    if(b)
+        printf("\nl'element %d existe est son indice %d", searchFor, i);
+    else
+        printf("\nl'element %d n'existe pas ", searchFor);
+};
+
 void binarySearch(int arr[], int size, int searchFor, int* index){
      int arrMin = 0, arrMax = (size - 1);
      int middle;
@@ -116,14 +134,16 @@ void main(){
     displayArr(arr, size);
     selectionSort(arr,size);
     //bubbleSort(arr, size);
-    printf("\nSorted ");
-    displayArr(arr, size);
+    //printf("\nSorted ");
+    //displayArr(arr, size);
 
 
     //Search algs
 
     //printf("\nJump Search, index of number we look for : %d", jumpSearch(arr,size, searchFor));
-    binarySearch(arr,size, searchFor, &index);
-    printf("\nBinary search, index of number we look for : %d", index);
+    //binarySearch(arr,size, searchFor, &index);
+    //printf("\nBinary search, index of number we look for : %d", index);
+
+    linearSearch(arr, size, searchFor); //doesn't need to be sorted
 
 }
